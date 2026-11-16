@@ -30,15 +30,15 @@ kv_t *kv_init(size_t capacity) {
   return table;
 }
 
-int kv_put(kv_t *table, char *key, char *val){
-  if (!table || !key || !val) return -1;
+int kv_put(kv_t *table, char *key, char *value){
+  if (!table || !key || !value) return -1;
   size_t idx = hash(key,table->capacity);
   size_t real_idx = (idx) % table->capacity;
   kv_entry_t *entry = &table ->entries[real_idx];
-        entry->value = val;
+        entry->value = value;
         entry->key = key;
         table->count++;
-        printf("%ld\n", real_idx);
+        //printf("print from kvput: %ld\n", real_idx);
         return real_idx;
 
 }
