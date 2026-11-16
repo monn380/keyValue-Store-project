@@ -32,7 +32,7 @@ kv_t *kv_init(size_t capacity) {
 int kv_put(kv_t *table, char *key, char *val){
   size_t idx = hash(key,table->capacity);
   size_t real_idx = (idx) % table->capacity;
-  kv_entry_t *entry = &table ->entries[real_idx];
+  kv_entry_t *entry = &table ->entries[0];
         entry->value = val;
         entry->key = key;
         table->count++;
