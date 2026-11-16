@@ -37,13 +37,13 @@ int kv_put(kv_t *table, char *key, char *val){
   if (!table || !key || !val) return -1;
   
   size_t idx = hash(key,table->capacity);
-  for (int i = 0; i < 2; i++) {
+  for (int i = 0; i < table->capacity-1; i++) {
     size_t real_idx = (idx+i) % table->capacity;
     
     kv_entry_t *entry = &table->entries[real_idx];
 
     //the key is already set, updating
-    if (entry->key && entry->key != (void*)TOMBSTONE &&
+if (entry->key && entry->key != (void*)TOMBSTONE &&
         !strcmp(entry->key, key)) {
         char *newval = strdup(val);
         if (!newval) return -1;
@@ -52,7 +52,12 @@ int kv_put(kv_t *table, char *key, char *val){
         }
 
     //lands in an empty slot either null or tombstone
-    if (!entry->key || entry->key == (void*)TOMBSTONE){
+    entry->value = newval;
+    entry->key = newkey;
+    table->count++;
+    return real_idx;
+
+/*    if (!entry->key || entry->key == (void*)TOMBSTONE){
         char *newval = strdup(val);
         char *newkey = strdup(key);
         if (!newval || !newkey) {
@@ -64,7 +69,7 @@ int kv_put(kv_t *table, char *key, char *val){
         entry->key = newkey;
         table->count++;
         return real_idx;
-    } 
+    } */
     // the database is occupied
     return -2;
   }
