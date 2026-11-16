@@ -11,14 +11,12 @@ int main() {
   assert(table != NULL);
 
   kv_put(table,"hehe","haha");
-  printf("%ld:count\n",table->count);
-  printf("key %s\n", table->entries[0].key);
-  printf("value %s\n", table->entries[0].value);
+  printf("count %ld\n",table->count);
+  printf("key %s\n", table->entries[2].key);
+  printf("value %s\n", table->entries[2].value);
 
-   for (int i = 0;i<2; i++) {
-     printf("prova prima di if\n");
+   for (int i = 0;i<3; i++) {
     if (table->entries[i].key){
-      printf("prova\n");
       printf("%s : %s\n",
               table->entries[i].key,
               table->entries[i].value);

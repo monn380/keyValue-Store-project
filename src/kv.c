@@ -1,6 +1,7 @@
 #include <kv.h>
 #include <string.h>
 #include <stdlib.h>
+#include <stdio.h>
 
 size_t hash(char* val, int capacity){
   size_t hash = 0x13371337deadbeef;
@@ -30,12 +31,14 @@ kv_t *kv_init(size_t capacity) {
 }
 
 int kv_put(kv_t *table, char *key, char *val){
+  if (!table || !key || !val) return -1;
   size_t idx = hash(key,table->capacity);
   size_t real_idx = (idx) % table->capacity;
-  kv_entry_t *entry = &table ->entries[0];
+  kv_entry_t *entry = &table ->entries[real_idx];
         entry->value = val;
         entry->key = key;
         table->count++;
+        printf("%ld\n", real_idx);
         return real_idx;
 
 }
