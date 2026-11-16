@@ -29,11 +29,21 @@ kv_t *kv_init(size_t capacity) {
   return table;
 }
 
+int kv_put(kv_t *table, char *key, char *val){
+  size_t idx = hash(key,table->capacity);
+  size_t real_idx = (idx) % table->capacity;
+  kv_entry_t *entry = &table ->entries[real_idx];
+        entry->value = val;
+        entry->key = key;
+        table->count++;
+        return real_idx;
+
+}
 
 /*fn kv_put
  * returns the index of the key, otherwise
  * on error returns -1, on not found returns -2*/
-int kv_put(kv_t *table, char *key, char *val){
+/*int kv_put(kv_t *table, char *key, char *val){
   if (!table || !key || !val) return -1;
   
   size_t idx = hash(key,table->capacity);
@@ -52,12 +62,7 @@ if (entry->key && entry->key != (void*)TOMBSTONE &&
         }
 
     //lands in an empty slot either null or tombstone
-    entry->value = newval;
-    entry->key = newkey;
-    table->count++;
-    return real_idx;
-
-/*    if (!entry->key || entry->key == (void*)TOMBSTONE){
+   if (!entry->key || entry->key == (void*)TOMBSTONE){
         char *newval = strdup(val);
         char *newkey = strdup(key);
         if (!newval || !newkey) {
@@ -69,9 +74,9 @@ if (entry->key && entry->key != (void*)TOMBSTONE &&
         entry->key = newkey;
         table->count++;
         return real_idx;
-    } */
+    } 
     // the database is occupied
     return -2;
   }
   return -1;
-}
+}*/
