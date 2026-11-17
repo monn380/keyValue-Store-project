@@ -108,6 +108,6 @@ int kv_delete(kv_t *table, char *key){
       return real_idx;
     }
   }
-  return -1;
+  return 0;
 }
 
