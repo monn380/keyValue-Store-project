@@ -49,7 +49,7 @@ int kv_put(kv_t *table, char *key, char *val){
         char *newval = strdup(val);
         if (!newval) return -1;
         entry->value = newval;
-        return real_idx;
+        return 0;
     }
 
     //lands in an empty slot either null or tombstone
@@ -64,7 +64,7 @@ int kv_put(kv_t *table, char *key, char *val){
         entry->value = newval;
         entry->key = newkey;
         table->count++;
-        return real_idx;
+        return 0;
    } 
   }
   return -2;
