@@ -88,7 +88,7 @@ char *kv_get(kv_t *table, char *key){
 }
 
 int kv_delete(kv_t *table, char *key){
-  if (!table || !key) return -1;
+  if (!table || !key) return NULL;
   
   size_t idx = hash(key,table->capacity);
 
