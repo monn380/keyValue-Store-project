@@ -106,7 +106,7 @@ int kv_delete(kv_t *table, char *key){
       printf("%ld\n",table->count);
       entry->key = TOMBSTONE;
       entry->value = NULL;
-      return 0;
+      return 1;
     }
   }
   return -1;

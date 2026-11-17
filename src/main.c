@@ -20,5 +20,7 @@ int main() {
   printf("%s %s %s\n",val1 ,val2, val3);
   printf("now we test kv_delete\n");
   int result = kv_delete(table, "hoho");
+  printf("table count %ld\n", table->count); 
+  printf("kv_delete result: %d", result);
 }
 
