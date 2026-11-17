@@ -19,8 +19,8 @@ int main() {
   char *val3 = kv_get(table,"not_exists");
   printf("%s %s %s\n",val1 ,val2, val3);
   printf("now we test kv_delete\n");
-  int result = kv_delete(table, "hoho");
+  int result = kv_delete(table, "lele");
   printf("table count %ld\n", table->count); 
-  printf("kv_delete result: %d", result);
+  printf("kv_delete result: %d\n", result);
 }
 
