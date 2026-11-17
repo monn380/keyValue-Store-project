@@ -10,7 +10,14 @@ int main() {
   assert(table->count==0);
   assert(table != NULL);
 
-  kv_put(table,"hehe","haha");
+  int status = 0;
+  kv_put(table,"lele","haha");
+  kv_put(table,"lolo","hfhf");
+  status = kv_put(table,"hehe","hphp");
+  printf("status kv_put: %d\n", status);
+  status = kv_put(table,"hoho","hihi");
+  printf("status kv_put: %d\n", status);
+  
   printf("capacity %ld\n",table->capacity);
    for (int i = 0;i < table->capacity; i++) {
     if (table->entries[i].key){
