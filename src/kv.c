@@ -30,19 +30,6 @@ kv_t *kv_init(size_t capacity) {
   return table;
 }
 
-/*int kv_put(kv_t *table, char *key, char *value){
-  if (!table || !key || !value) return -1;
-  size_t idx = hash(key,table->capacity);
-  size_t real_idx = (idx) % table->capacity;
-  kv_entry_t *entry = &table ->entries[real_idx];
-        entry->value = value;
-        entry->key = key;
-        table->count++;
-        //printf("print from kvput: %ld\n", real_idx);
-        return real_idx;
-
-}*/
-
 /*fn kv_put
  * returns the index of the key, otherwise
  * on error returns -1, on not found returns -2*/
