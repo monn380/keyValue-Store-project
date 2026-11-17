@@ -88,7 +88,7 @@ char *kv_get(kv_t *table, char *key){
 }
 
 int kv_delete(kv_t *table, char *key){
-  if (!table || !key) return 0;
+  if (!table || !key) return -1;
   
   size_t idx = hash(key,table->capacity);
 
@@ -102,12 +102,12 @@ int kv_delete(kv_t *table, char *key){
     if (entry->key && entry->key != TOMBSTONE && !strcmp(entry->key, key)) {
       free(entry->value);
       free(entry->key);
-      //table->count--;
+      table->count = 1;
       entry->key = TOMBSTONE;
       entry->value = NULL;
       return real_idx;
     }
   }
-  return 0;
+  return -1;
 }
 
