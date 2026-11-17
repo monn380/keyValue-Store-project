@@ -9,21 +9,14 @@ int main() {
   assert(table->capacity == 1024);
   assert(table->count==0);
   assert(table != NULL);
-
-  int status = 0;
   kv_put(table,"lele","haha");
   kv_put(table,"lolo","hfhf");
   kv_put(table,"hehe","hphp");
   kv_put(table,"hoho","hihi");
-  kv_put(table,"hehe","haha");
   
-  printf("capacity %ld\n",table->capacity);
-   for (int i = 0;i < table->capacity; i++) {
-    if (table->entries[i].key){
-      printf("[%d] %s : %s\n", i,
-              table->entries[i].key,
-              table->entries[i].value);
-    }
-   }
+  char *val1 = kv_get(table,"lele");
+  char *val2 = kv_get(table,"lolo");
+  char *val3 = kv_get(table,"not_exists");
+  printf("%s %s %s\n",val1 ,val2, val3);
 }
 

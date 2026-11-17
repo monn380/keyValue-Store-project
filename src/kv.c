@@ -68,3 +68,20 @@ int kv_put(kv_t *table, char *key, char *val){
   }
   return -2;
 }
+
+char *kv_get(kv_t *table, char *key){
+  if (!table || !key) return NULL;
+  
+  size_t idx = hash(key,table->capacity);
+  for (int i = 0;i < table->capacity; i++) {
+    size_t real_idx = (idx+i) % table->capacity;
+    kv_entry_t *entry = &table->entries[real_idx];
+    
+    if (entry->key == NULL) return NULL;
+    
+    if (entry->key && entry->key != TOMBSTONE && !strcmp(entry->key, key)) {
+      return entry->value;
+    }
+  }
+  return NULL;
+}
