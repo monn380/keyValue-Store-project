@@ -102,7 +102,7 @@ int kv_delete(kv_t *table, char *key){
     if (entry->key && entry->key != TOMBSTONE && !strcmp(entry->key, key)) {
       free(entry->value);
       free(entry->key);
-      table->count--;
+      //table->count--;
       entry->key = TOMBSTONE;
       entry->value = NULL;
       return real_idx;
