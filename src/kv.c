@@ -105,7 +105,7 @@ int kv_delete(kv_t *table, char *key){
       table->count = 1;
       entry->key = TOMBSTONE;
       entry->value = NULL;
-      return real_idx;
+      return count;
     }
   }
   return -1;
